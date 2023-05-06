@@ -1,5 +1,11 @@
+import Editor from '../../components/Editor/Editor';
+
 function Main() {
-  return <div>Main</div>;
+  return (
+    <main>
+      <Editor />
+    </main>
+  );
 }
 
 export default Main;
