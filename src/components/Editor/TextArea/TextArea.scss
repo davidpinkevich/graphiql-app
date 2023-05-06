@@ -1,0 +1,15 @@
+.editor__area {
+  padding: 25px 35px;
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  resize: none;
+  border-radius: 8px;
+  background-color: inherit;
+  line-height: 1;
+  font-size: 18px;
+  width: 400px;
+  height: 600px;
+  color: transparent;
+  caret-color: black;
+}
