@@ -35,6 +35,7 @@ function Docs() {
 
   const currentFieldName = useAppSelector((store) => store.docs.currentFieldName);
   const currentFieldArgs = useAppSelector((store) => store.docs.currentFieldArgs);
+  const isOpen = useAppSelector((store) => store.docs.isOpen);
   const dispatch = useAppDispatch();
 
   const currentField = schema?.types.find(
@@ -93,7 +94,7 @@ function Docs() {
   };
 
   return (
-    <div className="graphql-docs docs">
+    <div className={`graphql-docs docs ${!isOpen ? 'closed' : ''}`}>
       <div className="docs-header">
         <h2 className="docs-header__title">Docs</h2>
       </div>

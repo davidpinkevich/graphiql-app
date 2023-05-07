@@ -34,6 +34,11 @@
   gap: 1rem;
   max-width: 300px;
   font-family: 'Ysabeau', sans-serif;
+  position: relative;
+
+  &.closed {
+    left: -100%;
+  }
 }
 
 .docs-header {

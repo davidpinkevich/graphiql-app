@@ -4,11 +4,13 @@ import { IntrospectionInputValue } from 'graphql';
 type InitialStateType = {
   currentFieldName: string;
   currentFieldArgs: Array<IntrospectionInputValue>;
+  isOpen: boolean;
 };
 
 const initialState: InitialStateType = {
   currentFieldName: 'Query',
   currentFieldArgs: [],
+  isOpen: false,
 };
 
 const slice = createSlice({
@@ -21,8 +23,11 @@ const slice = createSlice({
     setFieldArgs(state, action: PayloadAction<Array<IntrospectionInputValue>>) {
       state.currentFieldArgs = action.payload;
     },
+    toggleOpen(state) {
+      state.isOpen = !state.isOpen;
+    },
   },
 });
 
-export const { setFieldName, setFieldArgs } = slice.actions;
+export const { setFieldName, setFieldArgs, toggleOpen } = slice.actions;
 export default slice.reducer;
