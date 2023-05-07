@@ -1,5 +1,11 @@
+import Docs from '../../components/Docs/Docs';
+
 function Main() {
-  return <div>Main</div>;
+  return (
+    <>
+      <Docs />
+    </>
+  );
 }
 
 export default Main;
