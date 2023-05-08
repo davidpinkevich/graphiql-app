@@ -1,4 +1,5 @@
 import './Main.scss';
+import Editor from '../../components/Editor/Editor';
 import React, { ComponentType, Suspense } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import CustomLoader from '../../components/Loader/Loader';
@@ -17,6 +18,7 @@ function Main() {
       <Suspense fallback={<CustomLoader />}>
         <Docs />
       </Suspense>
+      <Editor />
     </div>
   );
 }
