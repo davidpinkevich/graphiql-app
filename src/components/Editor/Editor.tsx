@@ -1,47 +1,40 @@
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { TStore } from '../../types';
 import TextArea from './TextArea/TextArea';
 import ButtonSideBar from './ButtonSideBar/ButtonSideBar';
 import ButtonsOptions from './ButtonsOptions/ButtonsOptions';
 import './Editor.scss';
 
 function Editor() {
-  const [btn, setBtn] = useState<boolean>(false);
-  const [options, setOptions] = useState<boolean>(false);
-  function hiddenSide() {
-    setBtn(!btn);
-  }
-  function chooseOption(choose: boolean) {
-    setOptions(choose);
-    setBtn(true);
-  }
+  const { chooseBtn, hiddenSide } = useSelector((state: TStore) => state.editor);
 
   return (
     <section className="editor">
       <div className="editor__main-container">
-        <TextArea className="editor__area" mirror="main" />
+        <TextArea className="editor__area" mirror="main" headers={false} />
       </div>
-      <div className={btn ? 'editor__sidebar sidebar__view' : 'editor__sidebar'}>
+      <div className={hiddenSide ? 'editor__sidebar sidebar__view' : 'editor__sidebar'}>
         <div className="editor__sidebar-buttons">
-          <ButtonsOptions variables={options} chooseOption={chooseOption} />
-          <ButtonSideBar hiddenSide={hiddenSide} hiiden={btn} />
+          <ButtonsOptions />
+          <ButtonSideBar />
         </div>
         <div
           className={
-            options
+            chooseBtn
               ? 'editor__variables-container'
               : 'editor__variables-container variables__hidden'
           }
         >
-          <TextArea className="editor__variables" mirror="variables" />
+          <TextArea className="editor__variables" mirror="variables" headers={false} />
         </div>
         <div
           className={
-            !options
+            !chooseBtn
               ? 'editor__variables-container'
               : 'editor__variables-container variables__hidden'
           }
         >
-          <TextArea className="editor__variables" mirror="variables" />
+          <TextArea className="editor__variables" mirror="variables" headers />
         </div>
       </div>
     </section>

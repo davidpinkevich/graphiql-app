@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import DocsReducer from '../slices/docs';
+import editor from '../slices/editor';
 
 const store = configureStore({
   reducer: {
     docs: DocsReducer,
+    editor,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

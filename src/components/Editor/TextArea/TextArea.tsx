@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
-import { TAreaText } from '../../../types';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { TAreaText, TStore } from '../../../types';
 import MirrorArea from '../MirrorAreaMain/MirrorAreaMain';
 import MirrorAreaVariables from '../MirrorAreaVariables/MirrorAreaVariables';
+import { getMainText, getVariablesText, getHeadersText } from '../../../redux/slices/editor';
 import './TextArea.scss';
 
-function TextArea({ className, mirror }: TAreaText) {
-  const [text, setText] = useState<string>('');
+function TextArea({ className, mirror, headers }: TAreaText) {
+  const typeArea = mirror === 'main' ? 'main' : headers ? 'headers' : 'variables';
+  const { textMain, textVariables, textHeaders } = useSelector((state: TStore) => state.editor);
+  const text = mirror === 'main' ? textMain : headers ? textHeaders : textVariables;
+  const dispatch = useDispatch();
+  function changeText(area: string, value: string) {
+    switch (area) {
+      case 'main':
+        dispatch(getMainText(value));
+        break;
+      case 'variables':
+        dispatch(getVariablesText(value));
+        break;
+      case 'headers':
+        dispatch(getHeadersText(value));
+        break;
+    }
+  }
 
   function changeValue(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    const text = event.target.value;
-    setText(text);
+    changeText(typeArea, event.target.value);
   }
 
   function changeKeyboard(event: React.KeyboardEvent<HTMLTextAreaElement>) {
@@ -20,7 +37,7 @@ function TextArea({ className, mirror }: TAreaText) {
       event.preventDefault();
       area.value = area.value.substring(0, start) + '  ' + area.value.substring(end);
       area.selectionStart = area.selectionEnd = start + 2;
-      setText(area.value);
+      changeText(typeArea, area.value);
     } else if (event.code === 'BracketLeft') {
       area.setRangeText('}', area.selectionStart, area.selectionEnd, 'start');
     } else if (event.code === 'Enter') {
@@ -36,7 +53,7 @@ function TextArea({ className, mirror }: TAreaText) {
           '  '.repeat(currentBrackets) +
           '  '.repeat(currentBrackets - 1) +
           area.value.substring(end);
-        setText(newValue);
+        changeText(typeArea, newValue);
         setTimeout(
           () => (area.selectionStart = area.selectionEnd = firstStart + 2 * currentBrackets + 1),
           0
@@ -49,7 +66,7 @@ function TextArea({ className, mirror }: TAreaText) {
           '\n' +
           '  '.repeat(currentBrackets - 1) +
           area.value.substring(end);
-        setText(newValue);
+        changeText(typeArea, newValue);
         setTimeout(
           () => (area.selectionStart = area.selectionEnd = firstStart + 2 * currentBrackets + 1),
           0
@@ -59,7 +76,7 @@ function TextArea({ className, mirror }: TAreaText) {
         const end = area.selectionEnd;
         area.value = area.value.substring(0, start) + '\n' + area.value.substring(end);
         area.selectionStart = area.selectionEnd = start + 1;
-        setText(area.value);
+        changeText(typeArea, area.value);
       }
     }
   }
