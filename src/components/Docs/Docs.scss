@@ -43,9 +43,17 @@
 }
 
 .docs-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
   &__title {
     font-size: 32px;
     font-weight: 600;
+  }
+
+  &__back {
+    cursor: pointer;
   }
 }
 

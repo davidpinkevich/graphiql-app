@@ -9,7 +9,12 @@ import {
 } from 'graphql';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setFieldName, setFieldArgs } from '../../redux/slices/docs';
+import {
+  setFieldName,
+  setFieldArgs,
+  addToHistory,
+  removeFromHistory,
+} from '../../redux/slices/docs';
 import { getSchema } from '../../graphql/api';
 import Description from './Description';
 import Field from './Field';
@@ -27,16 +32,16 @@ import Argument from './Argument';
 
 function Docs() {
   const [schema, setSchema] = useState<IntrospectionSchema>();
-  console.log(schema);
 
   useEffect(() => {
     getSchema().then((data) => setSchema(data));
   }, []);
 
+  const dispatch = useAppDispatch();
   const currentFieldName = useAppSelector((store) => store.docs.currentFieldName);
   const currentFieldArgs = useAppSelector((store) => store.docs.currentFieldArgs);
   const isOpen = useAppSelector((store) => store.docs.isOpen);
-  const dispatch = useAppDispatch();
+  const history = useAppSelector((store) => store.docs.history);
 
   const currentField = schema?.types.find(
     (field) => field.name === currentFieldName
@@ -47,56 +52,74 @@ function Docs() {
 
   const onFieldClick = (elem: IntrospectionField | IntrospectionInputValue) => {
     const elementType = elem.type;
+    let elementTypeName = '';
 
-    if (elementType.kind === 'OBJECT') {
-      dispatch(setFieldName(elementType.name));
+    if (elementType.kind === 'OBJECT' || elementType.kind === 'SCALAR') {
+      elementTypeName = elementType.name;
     }
     if (elementType.kind === 'LIST') {
       if (elementType.ofType.kind === 'OBJECT') {
-        dispatch(setFieldName(elementType.ofType.name));
+        elementTypeName = elementType.ofType.name;
       }
     }
     if (elementType.kind === 'NON_NULL') {
       if (elementType.ofType.kind === 'LIST') {
         if (elementType.ofType.ofType.kind === 'OBJECT') {
-          dispatch(setFieldName(elementType.ofType.ofType.name));
+          elementTypeName = elementType.ofType.ofType.name;
         }
       }
     }
-    if (elementType.kind === 'SCALAR') {
-      dispatch(setFieldName(elementType.name));
-    }
 
-    dispatch(setFieldArgs((elem as IntrospectionField).args as IntrospectionInputValue[]));
+    if (elementTypeName !== '') {
+      dispatch(setFieldName(elementTypeName));
+      dispatch(addToHistory(elementTypeName));
+      dispatch(setFieldArgs((elem as IntrospectionField).args as IntrospectionInputValue[]));
+    }
   };
 
   const onArgumentClick = (arg: IntrospectionInputValue) => {
     const argType: IntrospectionInputTypeRef = arg.type;
+    let argTypeName = '';
+
+    if (argType.kind === 'SCALAR' || argType.kind === 'INPUT_OBJECT') {
+      argTypeName = argType.name;
+    }
+
     if (argType.kind === 'NON_NULL') {
       if (argType.ofType.kind === 'SCALAR') {
-        dispatch(setFieldName(argType.ofType.name));
+        argTypeName = argType.ofType.name;
       }
 
       if (argType.ofType.kind === 'LIST') {
         if (argType.ofType.ofType.kind === 'NON_NULL') {
           if (argType.ofType.ofType.ofType.kind === 'SCALAR') {
-            dispatch(setFieldName(argType.ofType.ofType.ofType.name));
+            argTypeName = argType.ofType.ofType.ofType.name;
           }
         }
       }
     }
 
-    if (argType.kind === 'SCALAR' || argType.kind === 'INPUT_OBJECT') {
-      dispatch(setFieldName(argType.name));
+    if (argTypeName !== '') {
+      dispatch(setFieldName(argTypeName));
+      dispatch(addToHistory(argTypeName));
+      dispatch(setFieldArgs([]));
     }
+  };
 
-    dispatch(setFieldArgs([]));
+  const onBackClick = () => {
+    dispatch(setFieldName(history[history.length - 2]));
+    dispatch(removeFromHistory());
   };
 
   return (
     <div className={`graphql-docs docs ${!isOpen ? 'closed' : ''}`}>
       <div className="docs-header">
         <h2 className="docs-header__title">Docs</h2>
+        {history.length > 1 && (
+          <p className="docs-header__back" onClick={onBackClick}>
+            &lt;&nbsp;{history[history.length - 2]}
+          </p>
+        )}
       </div>
       <div className="docs-content">
         {(currentField || currentInputField) &&

@@ -5,12 +5,14 @@ type InitialStateType = {
   currentFieldName: string;
   currentFieldArgs: Array<IntrospectionInputValue>;
   isOpen: boolean;
+  history: string[];
 };
 
 const initialState: InitialStateType = {
   currentFieldName: 'Query',
   currentFieldArgs: [],
   isOpen: false,
+  history: ['Query'],
 };
 
 const slice = createSlice({
@@ -26,8 +28,15 @@ const slice = createSlice({
     toggleOpen(state) {
       state.isOpen = !state.isOpen;
     },
+    addToHistory(state, action: PayloadAction<string>) {
+      state.history.push(action.payload);
+    },
+    removeFromHistory(state) {
+      state.history.pop();
+    },
   },
 });
 
-export const { setFieldName, setFieldArgs, toggleOpen } = slice.actions;
+export const { setFieldName, setFieldArgs, toggleOpen, addToHistory, removeFromHistory } =
+  slice.actions;
 export default slice.reducer;
