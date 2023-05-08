@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import MirrorArea from '../MirrorArea/MirrorArea';
+import { TAreaText } from '../../../types';
+import MirrorArea from '../MirrorAreaMain/MirrorAreaMain';
+import MirrorAreaVariables from '../MirrorAreaVariables/MirrorAreaVariables';
 import './TextArea.scss';
 
-function TextArea() {
+function TextArea({ className, mirror }: TAreaText) {
   const [text, setText] = useState<string>('');
 
   function changeValue(event: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -15,6 +17,7 @@ function TextArea() {
     const start = area.selectionStart;
     const end = area.selectionEnd;
     if (event.code === 'Tab') {
+      event.preventDefault();
       area.value = area.value.substring(0, start) + '  ' + area.value.substring(end);
       area.selectionStart = area.selectionEnd = start + 2;
       setText(area.value);
@@ -51,15 +54,21 @@ function TextArea() {
           () => (area.selectionStart = area.selectionEnd = firstStart + 2 * currentBrackets + 1),
           0
         );
+      } else {
+        const start = area.selectionStart;
+        const end = area.selectionEnd;
+        area.value = area.value.substring(0, start) + '\n' + area.value.substring(end);
+        area.selectionStart = area.selectionEnd = start + 1;
+        setText(area.value);
       }
     }
   }
 
   return (
     <>
-      <MirrorArea text={text} />
+      {mirror === 'main' ? <MirrorArea text={text} /> : <MirrorAreaVariables text={text} />}
       <textarea
-        className="editor__area"
+        className={className}
         value={text}
         onKeyDown={changeKeyboard}
         onChange={changeValue}
