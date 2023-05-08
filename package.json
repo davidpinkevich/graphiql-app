@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint-fix": "eslint . --ext .tsx --ext .ts --fix"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "graphql-request": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
