@@ -22,9 +22,12 @@ import Argument from './Argument';
 
 function Docs() {
   const [schema, setSchema] = useState<IntrospectionSchema>();
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    getSchema().then((data) => setSchema(data));
+    getSchema()
+      .then((data) => setSchema(data))
+      .catch(() => setIsError(true));
   }, []);
 
   const dispatch = useAppDispatch();
@@ -100,6 +103,8 @@ function Docs() {
     dispatch(setFieldName(history[history.length - 2]));
     dispatch(removeFromHistory());
   };
+
+  if (isError) return;
 
   return (
     <div className={`graphql-docs docs ${!isOpen ? 'closed' : ''}`}>

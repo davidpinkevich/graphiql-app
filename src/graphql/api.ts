@@ -9,5 +9,6 @@ export const getSchema = async () => {
     return __schema;
   } catch (e) {
     console.log('Error with introspection query: ', (e as Error).message);
+    throw e;
   }
 };
