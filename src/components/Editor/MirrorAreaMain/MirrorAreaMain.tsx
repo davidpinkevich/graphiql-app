@@ -12,7 +12,7 @@ function MirrorArea({ text }: TMirrorArea) {
     <div className="editor__mirror">
       {text.split('\n').map((str, index) => (
         <div key={v4()} className="editor__mirror-item">
-          <span className="editor__mirror-item-index">{index + 1}</span>
+          <span className="editor__mirror-item-index">{index + 1 + '.'}</span>
           <span className="editor__mirror-item-string">
             {str.split(/\b/).map((item, id) => {
               if (regexpBracket.test(item)) {
@@ -24,7 +24,7 @@ function MirrorArea({ text }: TMirrorArea) {
               } else if (regexpWord.test(item)) {
                 return <SpanMirror key={v4()} className="editor__mirror-word" text={item} />;
               } else {
-                return item;
+                return <SpanMirror key={v4()} className="editor__mirror-error" text={item} />;
               }
             })}
           </span>
