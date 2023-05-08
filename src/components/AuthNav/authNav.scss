@@ -1,0 +1,23 @@
+.auth-nav {
+  margin-bottom: 35px;
+
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    font-size: 18px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, .3);
+
+    &_active {
+      color: rgba(0, 0, 0);
+      border-bottom: 2px solid #ef4374;
+    }
+
+    &:last-child {
+      margin-left: 20px;
+    }
+  }
+}
