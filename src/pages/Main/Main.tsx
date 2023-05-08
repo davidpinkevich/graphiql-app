@@ -1,13 +1,18 @@
 import './Main.scss';
-import Docs from '../../components/Docs/Docs';
+import React, { Suspense } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import CustomLoader from '../../components/Loader/Loader';
+
+const Docs = React.lazy(() => import('../../components/Docs/Docs'));
 
 function Main() {
   return (
     <div className="graphql-container">
       {/* Потом переделать */}
       <Sidebar />
-      <Docs />
+      <Suspense fallback={<CustomLoader />}>
+        <Docs />
+      </Suspense>
     </div>
   );
 }
