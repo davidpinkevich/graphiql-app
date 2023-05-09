@@ -3,7 +3,7 @@ import { TStore } from '../../types';
 import play from '../../assets/play.svg';
 import pause from '../../assets/pause.svg';
 import { AppDispatch } from '../../redux/store';
-import { getData, clearResponse, changeLoading } from '../../redux/slices/editor';
+import { getData, clearResponse, changeLoading, getTimeResponse } from '../../redux/slices/editor';
 import './ResponseButton.scss';
 
 function ResponseButton() {
@@ -11,7 +11,8 @@ function ResponseButton() {
   const { loadingData, textMain, textVariables, textHeaders } = useSelector(
     (state: TStore) => state.editor
   );
-  function getResponse() {
+  async function getResponse() {
+    const startTimer = new Date().getTime();
     dispatch(changeLoading());
     const request = {
       url: 'https://rickandmortyapi.com/graphql',
@@ -20,7 +21,9 @@ function ResponseButton() {
       headers: textHeaders,
     };
     dispatch(clearResponse());
-    dispatch(getData(request));
+    await dispatch(getData(request));
+    const endTimer = new Date().getTime();
+    dispatch(getTimeResponse(endTimer - startTimer));
   }
 
   return (
