@@ -111,9 +111,10 @@ function Docs() {
       <div className="docs-header">
         <h2 className="docs-header__title">Docs</h2>
         {history.length > 1 && (
-          <p className="docs-header__back" onClick={onBackClick}>
-            &lt;&nbsp;{history[history.length - 2]}
-          </p>
+          <div className="docs-header__back" onClick={onBackClick}>
+            <img src="/icons/left-arrow.svg" alt="left arrow" />
+            {history[history.length - 2]}
+          </div>
         )}
       </div>
       <div className="docs-content">
