@@ -21,20 +21,24 @@ import Field from './Field';
 import Argument from './Argument';
 
 function Docs() {
-  const [schema, setSchema] = useState<IntrospectionSchema>();
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    getSchema()
-      .then((data) => setSchema(data))
-      .catch(() => setIsError(true));
-  }, []);
-
   const dispatch = useAppDispatch();
   const currentFieldName = useAppSelector((store) => store.docs.currentFieldName);
   const currentFieldArgs = useAppSelector((store) => store.docs.currentFieldArgs);
   const isOpen = useAppSelector((store) => store.docs.isOpen);
   const history = useAppSelector((store) => store.docs.history);
+  const baseUrl = useAppSelector((store) => store.docs.baseUrl);
+
+  const [schema, setSchema] = useState<IntrospectionSchema>();
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    getSchema(baseUrl)
+      .then((data) => {
+        setSchema(data);
+        setIsError(false);
+      })
+      .catch(() => setIsError(true));
+  }, [baseUrl]);
 
   const currentField = schema?.types.find(
     (field) => field.name === currentFieldName

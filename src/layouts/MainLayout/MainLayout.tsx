@@ -7,6 +7,7 @@ function MainLayout() {
     <>
       <Header />
       <Outlet />
+      {/* потом убрать nav */}
       <nav>
         <NavLink to=".">Welcome</NavLink>
         <NavLink to="authorization">Authorization</NavLink>
