@@ -22,8 +22,7 @@ export type TAreaText = {
 export type TSpanMirror = {
   className: string;
   text: string;
-}
-
+};
 
 export type FieldProps = {
   elem: IntrospectionField | IntrospectionInputValue;
