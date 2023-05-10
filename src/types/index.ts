@@ -7,6 +7,21 @@ export type TInitialStateEditor = {
   textHeaders: string;
   hiddenSide: boolean;
   chooseBtn: boolean;
+  loadingData: string;
+  response: string;
+  timeResponse: number;
+  postRequestClick: boolean;
+};
+
+export type TRefButton = {
+  buttonRef: React.RefObject<HTMLButtonElement>;
+};
+
+export type TResponse = {
+  url: string;
+  query: string;
+  variables?: string;
+  headers?: string;
 };
 
 export type TStore = {

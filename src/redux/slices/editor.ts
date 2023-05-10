@@ -11,6 +11,7 @@ const initialState: TInitialStateEditor = {
   loadingData: 'start',
   response: '',
   timeResponse: 0,
+  postRequestClick: false,
 };
 
 export const getData = createAsyncThunk('editor/getData', async (data: TResponse) => {
@@ -58,6 +59,9 @@ const editorSlice = createSlice({
     getTimeResponse: (state, action) => {
       state.timeResponse = action.payload;
     },
+    clickRequest: (state, action) => {
+      state.postRequestClick = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -87,4 +91,5 @@ export const {
   clearResponse,
   changeLoading,
   getTimeResponse,
+  clickRequest,
 } = actions;

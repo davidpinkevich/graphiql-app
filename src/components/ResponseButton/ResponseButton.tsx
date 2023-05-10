@@ -1,16 +1,30 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TStore } from '../../types';
+import { TStore, TRefButton } from '../../types';
 import play from '../../assets/play.svg';
 import pause from '../../assets/pause.svg';
 import { AppDispatch } from '../../redux/store';
-import { getData, clearResponse, changeLoading, getTimeResponse } from '../../redux/slices/editor';
+import {
+  getData,
+  clearResponse,
+  changeLoading,
+  getTimeResponse,
+  clickRequest,
+} from '../../redux/slices/editor';
 import './ResponseButton.scss';
 
-function ResponseButton() {
+function ResponseButton(props: TRefButton) {
   const dispatch = useDispatch<AppDispatch>();
-  const { loadingData, textMain, textVariables, textHeaders } = useSelector(
+  const { loadingData, textMain, textVariables, textHeaders, postRequestClick } = useSelector(
     (state: TStore) => state.editor
   );
+  useEffect(() => {
+    if (postRequestClick) {
+      props.buttonRef.current?.click();
+      dispatch(clickRequest(false));
+    }
+  });
+
   async function getResponse() {
     const startTimer = new Date().getTime();
     dispatch(changeLoading());
@@ -27,7 +41,12 @@ function ResponseButton() {
   }
 
   return (
-    <button disabled={loadingData === 'loading'} className="editor__btn" onClick={getResponse}>
+    <button
+      ref={props.buttonRef}
+      disabled={loadingData === 'loading'}
+      className="editor__btn"
+      onClick={getResponse}
+    >
       <div className="editor__btn-container">
         <img src={loadingData === 'start' || loadingData === 'error' ? play : pause} />
       </div>
