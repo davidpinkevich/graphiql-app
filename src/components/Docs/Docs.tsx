@@ -29,6 +29,7 @@ function Docs() {
   const baseUrl = useAppSelector((store) => store.docs.baseUrl);
 
   const [schema, setSchema] = useState<IntrospectionSchema>();
+  console.log(schema);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -58,12 +59,20 @@ function Docs() {
       if (elementType.ofType.kind === 'OBJECT') {
         elementTypeName = elementType.ofType.name;
       }
+
+      if (elementType.ofType.kind === 'SCALAR') {
+        elementTypeName = elementType.ofType.name;
+      }
     }
     if (elementType.kind === 'NON_NULL') {
       if (elementType.ofType.kind === 'LIST') {
         if (elementType.ofType.ofType.kind === 'OBJECT') {
           elementTypeName = elementType.ofType.ofType.name;
         }
+      }
+
+      if (elementType.ofType.kind === 'SCALAR') {
+        elementTypeName = elementType.ofType.name;
       }
     }
 

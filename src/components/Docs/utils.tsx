@@ -3,7 +3,7 @@ import { IntrospectionField, IntrospectionInputValue, IntrospectionInputTypeRef 
 export const getElementType = (elem: IntrospectionField | IntrospectionInputValue) => {
   const elementType = elem.type;
 
-  if (elementType.kind === 'OBJECT') return elementType.name;
+  if (elementType.kind === 'OBJECT' || elementType.kind === 'SCALAR') return elementType.name;
 
   if (elementType.kind === 'LIST') {
     if (elementType.ofType.kind === 'OBJECT' || elementType.ofType.kind === 'SCALAR') {
@@ -17,9 +17,11 @@ export const getElementType = (elem: IntrospectionField | IntrospectionInputValu
         return elementType.ofType.ofType.name;
       }
     }
-  }
 
-  if (elementType.kind === 'SCALAR') return elementType.name;
+    if (elementType.ofType.kind === 'SCALAR') {
+      return `${elementType.ofType.name}!`;
+    }
+  }
 };
 
 export const getArgumentType = (arg: IntrospectionInputValue) => {
