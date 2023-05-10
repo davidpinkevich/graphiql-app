@@ -39,6 +39,12 @@ const slice = createSlice({
     setBaseUrl(state, action: PayloadAction<string>) {
       state.baseUrl = action.payload;
     },
+    resetDocs(state) {
+      state.currentFieldName = 'Query';
+      state.currentFieldArgs = [];
+      state.history = ['Query'];
+      state.isOpen = false;
+    },
   },
 });
 
@@ -49,5 +55,6 @@ export const {
   addToHistory,
   removeFromHistory,
   setBaseUrl,
+  resetDocs,
 } = slice.actions;
 export default slice.reducer;
