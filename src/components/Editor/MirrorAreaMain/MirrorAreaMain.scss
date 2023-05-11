@@ -1,6 +1,6 @@
 .editor__mirror {
   padding: 25px 55px;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   background-color: rgb(176, 156, 156);
@@ -25,11 +25,11 @@
 }
 
 .editor__mirror-word {
-  color: rgb(14, 98, 14);
+  color: rgb(11, 153, 11);
 }
 
 .editor__mirror-req {
-  color: rgb(7, 7, 126);
+  color: rgb(54, 54, 203);
 }
 
 .editor__mirror-inline {
@@ -37,11 +37,11 @@
 }
 
 .editor__mirror-main {
-  color: rgb(176, 38, 144);
+  color: rgb(69, 26, 145);
 }
 
 .editor__mirror-bracket {
-  color: rgb(103, 77, 77);
+  color: rgb(87, 19, 19);
 }
 
 .editor__mirror-error {

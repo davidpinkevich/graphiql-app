@@ -43,4 +43,31 @@
       animation: PulseButton 2s infinite;
     }
   }
+
+  &-tooltip {
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    background-color: rgba(204, 190, 190, 0.7);
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 5px;
+    width: 120px;
+    z-index: 20;
+    top: 120%;
+    right: 0;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -19px;
+      left: 85%;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid rgba(204, 190, 190, 0.7);
+      border-left: 10px solid transparent;
+      transform: translateX(-50%);
+    }
+  }
 }
