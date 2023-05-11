@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@400;700&display=swap');
-//"Yanone Kaffeesatz"
 
 .editor {
   font-family: 'Yanone Kaffeesatz';
@@ -13,6 +12,7 @@
   height: 600px;
   flex-direction: column;
   box-shadow: 0px 0px 2px 2px black;
+  margin-bottom: 10px;
 }
 
 .editor__main-container {

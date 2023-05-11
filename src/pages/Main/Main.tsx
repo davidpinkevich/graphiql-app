@@ -12,15 +12,14 @@ const Docs = React.lazy(
 function Main() {
   return (
     <div className="graphql-container">
-      {/* Потом переделать */}
       <Sidebar />
-      {/* Пока не понятно, где нужно отображать fallback,
-        поэтому он отображается возле сайдбара пока. */}
       <Suspense fallback={<CustomLoader />}>
         <Docs />
       </Suspense>
-      <Editor />
-      <UrlInput />
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <UrlInput />
+        <Editor />
+      </div>
     </div>
   );
 }
