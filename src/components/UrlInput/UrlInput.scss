@@ -1,16 +1,54 @@
 .url-input {
-  font-family: "Yanone Kaffeesatz";
-  margin: 10px 0;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  z-index: 15;
+  top: 13px;
+  left: 15px;
+  width: 75%;
+
   input {
-    padding: 8px;
-    border: 1px solid #ccc;
+    width: 100%;
+    padding: 6px;
     border-radius: 4px;
     font-size: 16px;
     outline: none;
-    width: 300px;
+    transition: all 0.3s;
+    background-color: rgba(204, 190, 190);
+    @media (max-width: 600px) {
+      font-size: 14px;
+    }
 
     &:focus {
-      border-color: blue;
+      box-shadow: inset 0px 0px 2px 2px rgb(53, 47, 47);
+      color: rgb(95, 80, 80);
+      background-color: rgb(227, 215, 215);
     }
+  }
+}
+
+.editor__input-tooltip {
+  position: absolute;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  background-color: rgba(204, 190, 190, 0.7);
+  font-size: 14px;
+  border-radius: 6px;
+  padding: 5px;
+  width: 105px;
+  z-index: 20;
+  top: 45px;
+  right: 0;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -19px;
+    left: 65%;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgba(204, 190, 190, 0.7);
+    border-left: 10px solid transparent;
+    transform: translateX(-50%);
   }
 }

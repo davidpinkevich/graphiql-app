@@ -1,5 +1,5 @@
 .editor__mirror {
-  padding: 25px 55px;
+  padding: 55px 20px 55px 55px;
   position: relative;
   top: 0;
   left: 0;
@@ -11,14 +11,17 @@
 
   &-item {
     position: relative;
-    height: 28px;
+    height: 24px;
+    @media (max-width: 600px) {
+      height: 18px;
+    }
   }
   &-item-index {
     position: absolute;
     left: -40px;
     top: 0;
     display: inline-block;
-    width: 35px;
+    width: 32px;
     text-align: end;
     background-color: rgba(204, 190, 190);
   }

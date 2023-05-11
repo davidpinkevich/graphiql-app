@@ -1,14 +1,13 @@
 .graphql-sidebar {
-  margin: 1rem;
-
   .doc-btn {
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 0.4rem;
-    transition: .4s;
+    transition: 0.4s;
+    background-color: rgb(209, 201, 201);
 
     &:hover {
-      background-color: #F1F2F4;
+      background-color: rgb(197, 183, 183);
       transform: scale(1.1);
     }
   }

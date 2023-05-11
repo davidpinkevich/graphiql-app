@@ -11,6 +11,10 @@
   justify-content: center;
   align-items: center;
   transition: all 0.3s;
+  @media (max-width: 600px) {
+    width: 40px;
+    height: 40px;
+  }
   &:hover {
     transform: scale(1.05);
     background-color: rgba(204, 190, 190, 1);
@@ -33,6 +37,10 @@
     position: relative;
     width: 28px;
     height: 28px;
+    @media (max-width: 600px) {
+      width: 20px;
+      height: 20px;
+    }
     & img {
       position: absolute;
       left: 0;
@@ -56,6 +64,9 @@
     z-index: 20;
     top: 120%;
     right: 0;
+    @media (max-width: 600px) {
+      font-size: 14px;
+    }
     &:before {
       content: '';
       position: absolute;
