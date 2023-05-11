@@ -1,21 +1,29 @@
-import { TButtonsOptions } from '../../../types';
+import { TStore } from '../../../types';
+import { useDispatch, useSelector } from 'react-redux';
+import { hiddenSidebar, activeBtn } from '../../../redux/slices/editor';
 
-function ButtonsOptions(props: TButtonsOptions) {
+function ButtonsOptions() {
+  const { chooseBtn } = useSelector((state: TStore) => state.editor);
+  const dispatch = useDispatch();
   return (
     <div className="editor__sidebar-options">
       <button
-        className={
-          props.variables ? 'editor__sidebar-var variables__active' : 'editor__sidebar-var'
-        }
-        onClick={() => props.chooseOption(true)}
+        className={chooseBtn ? 'editor__sidebar-var variables__active' : 'editor__sidebar-var'}
+        onClick={() => {
+          dispatch(hiddenSidebar(true));
+          dispatch(activeBtn(true));
+        }}
       >
         Variables
       </button>
       <button
         className={
-          !props.variables ? 'editor__sidebar-headers variables__active' : 'editor__sidebar-headers'
+          !chooseBtn ? 'editor__sidebar-headers variables__active' : 'editor__sidebar-headers'
         }
-        onClick={() => props.chooseOption(false)}
+        onClick={() => {
+          dispatch(hiddenSidebar(true));
+          dispatch(activeBtn(false));
+        }}
       >
         Headers
       </button>

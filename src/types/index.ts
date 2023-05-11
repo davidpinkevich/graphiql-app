@@ -1,27 +1,44 @@
+import { IntrospectionField, IntrospectionInputValue } from 'graphql';
+import { InitialStateType } from '../redux/slices/docs';
+
+export type TInitialStateEditor = {
+  textMain: string;
+  textVariables: string;
+  textHeaders: string;
+  hiddenSide: boolean;
+  chooseBtn: boolean;
+  loadingData: string;
+  response: string;
+  timeResponse: number;
+  postRequestClick: boolean;
+};
+
+export type TResponse = {
+  url: string;
+  query: string;
+  variables?: string;
+  headers?: string;
+};
+
+export type TStore = {
+  editor: TInitialStateEditor;
+  docs: InitialStateType;
+};
+
 export type TMirrorArea = {
   text: string;
-};
-
-export type TButtonSideBar = {
-  hiiden: boolean;
-  hiddenSide: () => void;
-};
-
-export type TButtonsOptions = {
-  variables: boolean;
-  chooseOption: (arg: boolean) => void;
 };
 
 export type TAreaText = {
   className: string;
   mirror: string;
+  headers: boolean;
 };
 
 export type TSpanMirror = {
   className: string;
   text: string;
-
-import { IntrospectionField, IntrospectionInputValue } from 'graphql';
+};
 
 export type FieldProps = {
   elem: IntrospectionField | IntrospectionInputValue;
