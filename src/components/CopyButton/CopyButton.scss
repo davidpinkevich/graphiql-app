@@ -1,0 +1,61 @@
+.editor__copy {
+  position: absolute;
+  z-index: 12;
+  top: 14%;
+  right: 2%;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(204, 190, 190, 0.7);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+  &:hover {
+    transform: scale(1.05);
+    background-color: rgba(204, 190, 190, 1);
+    & .editor__btn-container img {
+      animation: none;
+    }
+  }
+  &-container {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    & img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &-tooltip {
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    background-color: rgba(204, 190, 190, 0.7);
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 5px;
+    width: 130px;
+    z-index: 20;
+    top: 120%;
+    right: 0;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -19px;
+      left: 85%;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid rgba(204, 190, 190, 0.7);
+      border-left: 10px solid transparent;
+      transform: translateX(-50%);
+    }
+  }
+}
