@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IntrospectionInputValue } from 'graphql';
 
-type InitialStateType = {
+export type InitialStateType = {
   currentFieldName: string;
   currentFieldArgs: Array<IntrospectionInputValue>;
   isOpen: boolean;
