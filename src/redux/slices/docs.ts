@@ -31,7 +31,9 @@ const slice = createSlice({
       state.isOpen = !state.isOpen;
     },
     addToHistory(state, action: PayloadAction<string>) {
-      state.history.push(action.payload);
+      if (state.history[state.history.length - 1] !== action.payload) {
+        state.history.push(action.payload);
+      }
     },
     removeFromHistory(state) {
       state.history.pop();
