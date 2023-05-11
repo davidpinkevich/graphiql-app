@@ -1,5 +1,7 @@
+import './Welcome.scss';
+
 function Welcome() {
-  return <div>Welcom</div>;
+  return <div className="welcome-page">Welcome</div>;
 }
 
 export default Welcome;
