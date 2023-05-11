@@ -20,6 +20,7 @@ function ResponseButton() {
   const { loadingData, textMain, textVariables, textHeaders, postRequestClick } = useSelector(
     (state: TStore) => state.editor
   );
+  const { baseUrl } = useSelector((state: TStore) => state.docs);
   useEffect(() => {
     if (postRequestClick) {
       buttonRef.current?.click();
@@ -39,7 +40,7 @@ function ResponseButton() {
     const startTimer = new Date().getTime();
     dispatch(changeLoading());
     const request = {
-      url: 'https://rickandmortyapi.com/graphql',
+      url: baseUrl,
       query: textMain,
       variables: textVariables,
       headers: textHeaders,
