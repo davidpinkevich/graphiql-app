@@ -1,0 +1,51 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 65px;
+  color: white;
+  background-color: rgb(69, 69, 69);
+}
+
+.footer-git-person {
+  display: inline-flex;
+  margin: 0 15px;
+  border-radius: 50%;
+  box-shadow: 0px 2px 2px 2px black;
+  background-size: cover;
+  transition: all 0.2s;
+
+  .img {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    box-shadow: 0px 2px 2px 2px black;
+    background-size: cover;
+  }
+
+  &:hover {
+    box-shadow: 0px 4px 4px 4px white;
+    animation: none;
+    transform: scale(1.2);
+  }
+}
+
+.footer-rs {
+  display: flex;
+  align-items: center;
+  width: 135px;
+  height: 50px;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.footer-rs-img {
+  width: 135px;
+  height: 50px;
+  background-size: cover;
+}
