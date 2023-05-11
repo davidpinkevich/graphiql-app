@@ -20,15 +20,16 @@
     "react-hook-form": "^7.43.9",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.0",
+    "react-syntax-highlighter": "^15.5.0",
     "sass": "^1.59.3",
     "uuid": "^9.0.0",
     "vite-plugin-eslint": "^1.8.1"
-
   },
   "devDependencies": {
     "@types/node": "^18.16.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/react-syntax-highlighter": "^15.5.6",
     "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
