@@ -21,20 +21,25 @@ import Field from './Field';
 import Argument from './Argument';
 
 function Docs() {
-  const [schema, setSchema] = useState<IntrospectionSchema>();
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    getSchema()
-      .then((data) => setSchema(data))
-      .catch(() => setIsError(true));
-  }, []);
-
   const dispatch = useAppDispatch();
   const currentFieldName = useAppSelector((store) => store.docs.currentFieldName);
   const currentFieldArgs = useAppSelector((store) => store.docs.currentFieldArgs);
   const isOpen = useAppSelector((store) => store.docs.isOpen);
   const history = useAppSelector((store) => store.docs.history);
+  const baseUrl = useAppSelector((store) => store.docs.baseUrl);
+
+  const [schema, setSchema] = useState<IntrospectionSchema>();
+  console.log(schema);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    getSchema(baseUrl)
+      .then((data) => {
+        setSchema(data);
+        setIsError(false);
+      })
+      .catch(() => setIsError(true));
+  }, [baseUrl]);
 
   const currentField = schema?.types.find(
     (field) => field.name === currentFieldName
@@ -54,12 +59,20 @@ function Docs() {
       if (elementType.ofType.kind === 'OBJECT') {
         elementTypeName = elementType.ofType.name;
       }
+
+      if (elementType.ofType.kind === 'SCALAR') {
+        elementTypeName = elementType.ofType.name;
+      }
     }
     if (elementType.kind === 'NON_NULL') {
       if (elementType.ofType.kind === 'LIST') {
         if (elementType.ofType.ofType.kind === 'OBJECT') {
           elementTypeName = elementType.ofType.ofType.name;
         }
+      }
+
+      if (elementType.ofType.kind === 'SCALAR') {
+        elementTypeName = elementType.ofType.name;
       }
     }
 
@@ -111,9 +124,10 @@ function Docs() {
       <div className="docs-header">
         <h2 className="docs-header__title">Docs</h2>
         {history.length > 1 && (
-          <p className="docs-header__back" onClick={onBackClick}>
-            &lt;&nbsp;{history[history.length - 2]}
-          </p>
+          <div className="docs-header__back" onClick={onBackClick}>
+            <img src="/icons/left-arrow.svg" alt="left arrow" />
+            {history[history.length - 2]}
+          </div>
         )}
       </div>
       <div className="docs-content">

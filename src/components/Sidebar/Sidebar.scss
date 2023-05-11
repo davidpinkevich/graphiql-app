@@ -5,9 +5,11 @@
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 0.4rem;
+    transition: .4s;
 
     &:hover {
       background-color: #F1F2F4;
+      transform: scale(1.1);
     }
   }
 }

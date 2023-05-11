@@ -6,6 +6,7 @@ export type InitialStateType = {
   currentFieldArgs: Array<IntrospectionInputValue>;
   isOpen: boolean;
   history: string[];
+  baseUrl: string;
 };
 
 const initialState: InitialStateType = {
@@ -13,6 +14,7 @@ const initialState: InitialStateType = {
   currentFieldArgs: [],
   isOpen: false,
   history: ['Query'],
+  baseUrl: 'https://rickandmortyapi.com/graphql',
 };
 
 const slice = createSlice({
@@ -29,14 +31,32 @@ const slice = createSlice({
       state.isOpen = !state.isOpen;
     },
     addToHistory(state, action: PayloadAction<string>) {
-      state.history.push(action.payload);
+      if (state.history[state.history.length - 1] !== action.payload) {
+        state.history.push(action.payload);
+      }
     },
     removeFromHistory(state) {
       state.history.pop();
     },
+    setBaseUrl(state, action: PayloadAction<string>) {
+      state.baseUrl = action.payload;
+    },
+    resetDocs(state) {
+      state.currentFieldName = 'Query';
+      state.currentFieldArgs = [];
+      state.history = ['Query'];
+      state.isOpen = false;
+    },
   },
 });
 
-export const { setFieldName, setFieldArgs, toggleOpen, addToHistory, removeFromHistory } =
-  slice.actions;
+export const {
+  setFieldName,
+  setFieldArgs,
+  toggleOpen,
+  addToHistory,
+  removeFromHistory,
+  setBaseUrl,
+  resetDocs,
+} = slice.actions;
 export default slice.reducer;

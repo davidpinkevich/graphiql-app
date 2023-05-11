@@ -3,6 +3,7 @@ import Editor from '../../components/Editor/Editor';
 import React, { ComponentType, Suspense } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import CustomLoader from '../../components/Loader/Loader';
+import UrlInput from '../../components/UrlInput/UrlInput';
 
 const Docs = React.lazy(
   () => import('../../components/Docs/Docs') as Promise<{ default: ComponentType }>
@@ -11,14 +12,14 @@ const Docs = React.lazy(
 function Main() {
   return (
     <div className="graphql-container">
-      {/* Потом переделать */}
       <Sidebar />
-      {/* Пока не понятно, где нужно отображать fallback,
-        поэтому он отображается возле сайдбара пока. */}
       <Suspense fallback={<CustomLoader />}>
         <Docs />
       </Suspense>
-      <Editor />
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <UrlInput />
+        <Editor />
+      </div>
     </div>
   );
 }
