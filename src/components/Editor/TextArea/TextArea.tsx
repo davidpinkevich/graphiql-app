@@ -1,7 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TAreaText, TStore } from '../../../types';
-import ResponseButton from '../../ResponseButton/ResponseButton';
 import MirrorArea from '../MirrorAreaMain/MirrorAreaMain';
 import MirrorAreaVariables from '../MirrorAreaVariables/MirrorAreaVariables';
 import {
@@ -16,7 +15,6 @@ function TextArea({ className, mirror, headers }: TAreaText) {
   const typeArea = mirror === 'main' ? 'main' : headers ? 'headers' : 'variables';
   const { textMain, textVariables, textHeaders } = useSelector((state: TStore) => state.editor);
   const text = mirror === 'main' ? textMain : headers ? textHeaders : textVariables;
-  const buttonRef = useRef<HTMLButtonElement>(null);
   const dispatch = useDispatch();
   function changeText(area: string, value: string) {
     switch (area) {
@@ -42,6 +40,8 @@ function TextArea({ className, mirror, headers }: TAreaText) {
     const end = area.selectionEnd;
     if (event.ctrlKey && event.code === 'Enter' && typeArea === 'main') {
       dispatch(clickRequest(true));
+    } else if (event.shiftKey && event.ctrlKey && event.code === 'KeyC') {
+      navigator.clipboard.writeText(textMain);
     } else if (event.code === 'Tab') {
       event.preventDefault();
       area.value = area.value.substring(0, start) + '  ' + area.value.substring(end);
@@ -93,7 +93,6 @@ function TextArea({ className, mirror, headers }: TAreaText) {
   return (
     <>
       {mirror === 'main' ? <MirrorArea text={text} /> : <MirrorAreaVariables text={text} />}
-      {mirror === 'main' && <ResponseButton buttonRef={buttonRef} />}
       <textarea
         className={className}
         value={text}

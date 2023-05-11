@@ -13,10 +13,6 @@ export type TInitialStateEditor = {
   postRequestClick: boolean;
 };
 
-export type TRefButton = {
-  buttonRef: React.RefObject<HTMLButtonElement>;
-};
-
 export type TResponse = {
   url: string;
   query: string;
