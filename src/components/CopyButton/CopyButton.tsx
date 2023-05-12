@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { TStore } from '../../types';
 import copy from '../../assets/copy.svg';
@@ -17,6 +18,9 @@ function CopyButton() {
       setTooltip(false);
     }
   }
+
+  const { t } = useTranslation();
+
   return (
     <button
       onClick={copyText}
@@ -24,7 +28,7 @@ function CopyButton() {
       onMouseLeave={popupTooltip}
       className="editor__copy"
     >
-      {tooltip && <div className="editor__copy-tooltip">Copy query (Shift + Ctrl + C)</div>}
+      {tooltip && <div className="editor__copy-tooltip">{t('buttons.label.copy')}</div>}
       <div className="editor__copy-container">
         <img src={copy} />
       </div>

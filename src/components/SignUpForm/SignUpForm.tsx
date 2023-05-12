@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
@@ -20,11 +21,13 @@ function SignUpForm() {
     console.log(name, email, password);
   };
 
+  const { t } = useTranslation();
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextField
         error={!!errors.name}
-        label="Name"
+        label={t('auth.name')}
         variant="outlined"
         sx={{ width: '100%' }}
         {...register('name', {
@@ -42,7 +45,7 @@ function SignUpForm() {
       {errors.name?.message && <span className="auth__error">{errors.name?.message}</span>}
       <TextField
         error={!!errors.email}
-        label="Email"
+        label={t('auth.email')}
         variant="outlined"
         sx={{ marginTop: '20px', width: '100%' }}
         {...register('email', {
@@ -57,7 +60,7 @@ function SignUpForm() {
       <TextField
         type="password"
         error={!!errors.password}
-        label="Password"
+        label={t('auth.password')}
         variant="outlined"
         sx={{ marginTop: '20px', width: '100%' }}
         {...register('password', {
@@ -79,7 +82,7 @@ function SignUpForm() {
         size="large"
         sx={{ marginTop: '20px', height: 53, width: '100%' }}
       >
-        Sign Up
+        {t('auth.signup')}
       </Button>
     </form>
   );

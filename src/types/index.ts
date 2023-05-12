@@ -3,7 +3,7 @@ import { InitialStateType } from '../redux/slices/docs';
 
 export type TMirrorArea = {
   text: string;
-}
+};
 
 export type TInitialStateEditor = {
   textMain: string;

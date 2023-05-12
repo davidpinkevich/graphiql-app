@@ -1,10 +1,12 @@
 import { TStore } from '../../../types';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { hiddenSidebar, activeBtn } from '../../../redux/slices/editor';
 
 function ButtonsOptions() {
   const { chooseBtn } = useSelector((state: TStore) => state.editor);
   const dispatch = useDispatch();
+  const { t, i18n } = useTranslation();
   return (
     <div className="editor__sidebar-options">
       <button
@@ -14,7 +16,7 @@ function ButtonsOptions() {
           dispatch(activeBtn(true));
         }}
       >
-        Variables
+        {t('options.variables')}
       </button>
       <button
         className={
@@ -25,7 +27,7 @@ function ButtonsOptions() {
           dispatch(activeBtn(false));
         }}
       >
-        Headers
+        {t('options.headers')}
       </button>
     </div>
   );

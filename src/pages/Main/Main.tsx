@@ -6,7 +6,6 @@ import CustomLoader from '../../components/Loader/Loader';
 import Response from '../../components/Response/Response';
 import UrlInput from '../../components/UrlInput/UrlInput';
 
-
 const Docs = React.lazy(
   () => import('../../components/Docs/Docs') as Promise<{ default: ComponentType }>
 );
@@ -21,8 +20,8 @@ function Main() {
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <UrlInput />
         <Editor />
-        <Response />
       </div>
+      <Response />
     </div>
   );
 }

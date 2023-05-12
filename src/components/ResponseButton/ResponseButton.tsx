@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { TStore } from '../../types';
 import play from '../../assets/play.svg';
 import pause from '../../assets/pause.svg';
@@ -50,6 +51,8 @@ function ResponseButton() {
     dispatch(getTimeResponse(endTimer - startTimer));
   }
 
+  const { t } = useTranslation();
+
   return (
     <button
       ref={buttonRef}
@@ -59,7 +62,7 @@ function ResponseButton() {
       onMouseEnter={popupTooltip}
       onMouseLeave={popupTooltip}
     >
-      {tooltip && <div className="editor__btn-tooltip">Execute query (Ctrl + Enter)</div>}
+      {tooltip && <div className="editor__btn-tooltip">{t('buttons.label.execute')}</div>}
       <div className="editor__btn-container">
         <img src={loadingData === 'start' || loadingData === 'error' ? play : pause} />
       </div>

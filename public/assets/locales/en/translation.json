@@ -1,0 +1,21 @@
+{
+  "docs": "Docs",
+  "auth": {
+    "signup": "Sign Up",
+    "signin": "Sign In",
+    "signout": "Sign Out",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password"
+  },
+  "options": {
+    "variables": "Variables",
+    "headers": "Headers"
+  },
+  "buttons": {
+    "label": {
+      "copy": "Copy query (Shift + Ctrl + C)",
+      "execute": "Execute query (Ctrl + Enter)"
+    }
+  }
+}

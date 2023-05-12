@@ -8,6 +8,7 @@ import {
   IntrospectionInputValue,
 } from 'graphql';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   setFieldName,
@@ -19,6 +20,7 @@ import { getSchema } from '../../graphql/api';
 import Description from './Description';
 import Field from './Field';
 import Argument from './Argument';
+import svgDown from '../../assets/down.svg';
 
 function Docs() {
   const dispatch = useAppDispatch();
@@ -29,7 +31,6 @@ function Docs() {
   const baseUrl = useAppSelector((store) => store.docs.baseUrl);
 
   const [schema, setSchema] = useState<IntrospectionSchema>();
-  console.log(schema);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -117,16 +118,24 @@ function Docs() {
     dispatch(removeFromHistory());
   };
 
+  const { t } = useTranslation();
+
   if (isError) return;
 
   return (
     <div className={`graphql-docs docs ${!isOpen ? 'closed' : ''}`}>
       <div className="docs-header">
-        <h2 className="docs-header__title">Docs</h2>
+        <h2 className="docs-header__title">{t('docs')}</h2>
         {history.length > 1 && (
           <div className="docs-header__back" onClick={onBackClick}>
-            <img src="/icons/left-arrow.svg" alt="left arrow" />
-            {history[history.length - 2]}
+            <img
+              src={svgDown}
+              width="30px"
+              height="30px"
+              style={{ transform: 'rotate(90deg)' }}
+              alt="left arrow"
+            />
+            <p>{history[history.length - 2]}</p>
           </div>
         )}
       </div>
