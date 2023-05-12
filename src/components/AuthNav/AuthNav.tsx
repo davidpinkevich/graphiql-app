@@ -1,11 +1,14 @@
+import { useDispatch, useSelector } from 'react-redux';
+
+import { AppDispatch, RootState } from '../../redux/store';
+import { onAuthChange } from '../../redux/slices/auth';
+
 import './authNav.scss';
 
-type TAuthNavProps = {
-  auth: 'signin' | 'signup';
-  onChangeAuth: (auth: 'signin' | 'signup') => void;
-};
+function AuthNav() {
+  const auth = useSelector((state: RootState) => state.auth.auth);
+  const dispatch = useDispatch<AppDispatch>();
 
-function AuthNav({ auth, onChangeAuth }: TAuthNavProps) {
   const signInActive =
     auth === 'signin' ? 'auth-nav__item auth-nav__item_active' : 'auth-nav__item';
   const signUpActive =
@@ -14,10 +17,10 @@ function AuthNav({ auth, onChangeAuth }: TAuthNavProps) {
   return (
     <nav className="auth-nav">
       <ul className="auth-nav__list">
-        <li className={signInActive} onClick={() => onChangeAuth('signin')}>
+        <li className={signInActive} onClick={() => dispatch(onAuthChange('signin'))}>
           SIGN IN
         </li>
-        <li className={signUpActive} onClick={() => onChangeAuth('signup')}>
+        <li className={signUpActive} onClick={() => dispatch(onAuthChange('signup'))}>
           SIGN UP
         </li>
       </ul>
