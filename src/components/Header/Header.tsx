@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -25,10 +26,20 @@ function Header() {
   });
 
   const navigate = useNavigate();
+  
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+  };
+  const nextLanguage = i18n.language === 'en' ? 'ru' : 'en';
 
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header__actions">
+        <div className="button language lang-btn" onClick={() => changeLanguage(nextLanguage)}>
+          {nextLanguage.toUpperCase()}
+        </div>
         <button
           className="button signup-btn"
           onClick={() => {
@@ -36,7 +47,7 @@ function Header() {
             navigate('/authorization');
           }}
         >
-          Sign Up
+          {t('auth.signup')}
         </button>
         <button
           className="button signin-btn"
@@ -45,9 +56,9 @@ function Header() {
             navigate('/authorization');
           }}
         >
-          Sign In
+          {t('auth.signin')}
         </button>
-        <button className="button signout-btn">Sign Out</button>
+        <button className="button signout-btn">{t('auth.signout')}</button>
       </div>
     </header>
   );
