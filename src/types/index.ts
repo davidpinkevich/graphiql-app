@@ -1,10 +1,6 @@
 import { IntrospectionField, IntrospectionInputValue } from 'graphql';
 import { InitialStateType } from '../redux/slices/docs';
 
-export type TMirrorArea = {
-  text: string;
-}
-
 export type TInitialStateEditor = {
   textMain: string;
   textVariables: string;
@@ -53,3 +49,14 @@ export type ArgumentProps = {
   arg: IntrospectionInputValue;
   onArgumentClick: (arg: IntrospectionInputValue) => void;
 };
+
+export interface ISingUpForm {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface ISignInForm {
+  email: string;
+  password: string;
+}

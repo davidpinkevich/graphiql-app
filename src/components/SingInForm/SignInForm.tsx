@@ -2,10 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-interface ISignInForm {
-  email: string;
-  password: string;
-}
+import { ISignInForm } from '../../types';
 
 function SignInForm() {
   const {

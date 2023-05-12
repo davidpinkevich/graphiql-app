@@ -2,11 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-interface ISingUpForm {
-  name: string;
-  email: string;
-  password: string;
-}
+import { ISingUpForm } from '../../types';
 
 function SignUpForm() {
   const {
