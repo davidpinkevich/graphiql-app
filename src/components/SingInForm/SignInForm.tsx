@@ -5,6 +5,11 @@ import Button from '@mui/material/Button';
 
 import { ISignInForm } from '../../types';
 
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import { auth, logInWithEmailAndPassword } from '../../firebase';
+import { useEffect } from 'react';
+
 function SignInForm() {
   const {
     register,
@@ -14,8 +19,15 @@ function SignInForm() {
   } = useForm<ISignInForm>({ reValidateMode: 'onSubmit' });
 
   const onSubmit: SubmitHandler<ISignInForm> = ({ email, password }) => {
-    console.log(email, password);
+    logInWithEmailAndPassword(email, password);
   };
+
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (loading) return;
+    if (user) navigate('/main');
+  }, [user, loading]);
 
   const { t } = useTranslation();
 
