@@ -55,10 +55,17 @@
 
   &__back {
     cursor: pointer;
-    transition: 0.4s;
+
+    transition: .4s;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
 
     &:hover {
       transform: scale(1.1);
+      background-color: rgba(204, 190, 190, 0.7);
     }
   }
 }
@@ -87,7 +94,7 @@
     transition: 0.1s;
 
     &:hover {
-      background-color: rgb(118, 168, 255);
+      background-color: #8d7c7c;
       transform: scale(1.03);
     }
 
@@ -109,7 +116,7 @@
     position: relative;
 
     &:hover {
-      background-color: rgb(118, 168, 255);
+      background-color: #8d7c7c;
       transform: scale(1.03);
     }
 
