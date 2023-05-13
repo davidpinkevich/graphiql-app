@@ -10,13 +10,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import {
-  setFieldName,
-  setFieldArgs,
-  addToHistory,
-  removeFromHistory,
-  FieldType,
-} from '../../redux/slices/docs';
+import { setFieldName, addToHistory, removeFromHistory } from '../../redux/slices/docs';
 import { getSchema } from '../../graphql/api';
 import Description from './Description';
 import Field from './Field';
