@@ -1,13 +1,14 @@
 .response {
-  width: 50%;
-  height: 600px;
+  flex: 1 1 400px;
+  min-height: 600px;
+
   border-radius: 8px;
   box-shadow: 0px 0px 2px 2px black;
   font-size: 18px;
   margin-left: 2px;
 
   &__json {
-    height: 600px;
+    height: 100%;
     overflow-y: scroll;
     margin: 0;
 
@@ -18,7 +19,7 @@
 
     &::-webkit-scrollbar-thumb {
       background-color: rgb(163, 146, 146);
-  
+
       border-radius: 8px;
       box-shadow: inset 0px 0px 3px 3px black;
     }

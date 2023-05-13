@@ -6,6 +6,7 @@ import ButtonsOptions from './ButtonsOptions/ButtonsOptions';
 import TimerResponse from '../TimerResponse/TimerResponse';
 import CopyButton from '../CopyButton/CopyButton';
 import ResponseButton from '../ResponseButton/ResponseButton';
+import UrlInput from '../UrlInput/UrlInput';
 import './Editor.scss';
 
 function Editor() {
@@ -13,6 +14,7 @@ function Editor() {
   return (
     <>
       <section className="editor">
+        <UrlInput />
         <ResponseButton />
         <CopyButton />
         <div className="editor__main-container">
