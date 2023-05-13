@@ -15,6 +15,7 @@ import {
   setFieldArgs,
   addToHistory,
   removeFromHistory,
+  FieldType,
 } from '../../redux/slices/docs';
 import { getSchema } from '../../graphql/api';
 import Description from './Description';
@@ -25,7 +26,6 @@ import svgDown from '../../assets/down.svg';
 function Docs() {
   const dispatch = useAppDispatch();
   const currentFieldName = useAppSelector((store) => store.docs.currentFieldName);
-  const currentFieldArgs = useAppSelector((store) => store.docs.currentFieldArgs);
   const isOpen = useAppSelector((store) => store.docs.isOpen);
   const history = useAppSelector((store) => store.docs.history);
   const baseUrl = useAppSelector((store) => store.docs.baseUrl);
@@ -79,8 +79,12 @@ function Docs() {
 
     if (elementTypeName !== '') {
       dispatch(setFieldName(elementTypeName));
-      dispatch(addToHistory(elementTypeName));
-      dispatch(setFieldArgs((elem as IntrospectionField).args as IntrospectionInputValue[]));
+      dispatch(
+        addToHistory({
+          name: elementTypeName,
+          args: (elem as IntrospectionField).args as IntrospectionInputValue[],
+        })
+      );
     }
   };
 
@@ -108,13 +112,17 @@ function Docs() {
 
     if (argTypeName !== '') {
       dispatch(setFieldName(argTypeName));
-      dispatch(addToHistory(argTypeName));
-      dispatch(setFieldArgs([]));
+      dispatch(addToHistory({ name: argTypeName, args: [] }));
     }
   };
 
+  let currentFieldArgs: Array<IntrospectionInputValue> = [];
+  if (history && history[history.length - 1] && history[history.length - 1].args) {
+    currentFieldArgs = history[history.length - 1].args;
+  }
+
   const onBackClick = () => {
-    dispatch(setFieldName(history[history.length - 2]));
+    dispatch(setFieldName(history[history.length - 2].name));
     dispatch(removeFromHistory());
   };
 
@@ -135,7 +143,7 @@ function Docs() {
               style={{ transform: 'rotate(90deg)' }}
               alt="left arrow"
             />
-            <p>{history[history.length - 2]}</p>
+            <p>{history[history.length - 2].name}</p>
           </div>
         )}
       </div>

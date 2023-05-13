@@ -1,19 +1,22 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IntrospectionInputValue } from 'graphql';
 
+export type FieldType = {
+  name: string;
+  args: Array<IntrospectionInputValue>;
+};
+
 export type InitialStateType = {
   currentFieldName: string;
-  currentFieldArgs: Array<IntrospectionInputValue>;
   isOpen: boolean;
-  history: string[];
+  history: FieldType[];
   baseUrl: string;
 };
 
 const initialState: InitialStateType = {
   currentFieldName: 'Query',
-  currentFieldArgs: [],
   isOpen: false,
-  history: ['Query'],
+  history: [{ name: 'Query', args: [] }],
   baseUrl: 'https://rickandmortyapi.com/graphql',
 };
 
@@ -30,8 +33,8 @@ const slice = createSlice({
     toggleOpen(state) {
       state.isOpen = !state.isOpen;
     },
-    addToHistory(state, action: PayloadAction<string>) {
-      if (state.history[state.history.length - 1] !== action.payload) {
+    addToHistory(state, action: PayloadAction<FieldType>) {
+      if (state.history[state.history.length - 1].name !== action.payload.name) {
         state.history.push(action.payload);
       }
     },
