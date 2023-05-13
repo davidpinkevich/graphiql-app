@@ -15,6 +15,11 @@ function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [user, loading, error] = useAuthState(auth);
 
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user && !loading) navigate('/authorization');
+  }, [user, loading]);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -26,8 +31,6 @@ function Header() {
       window.removeEventListener('scroll', handleScroll);
     };
   });
-
-  const navigate = useNavigate();
 
   const { t, i18n } = useTranslation();
 
@@ -64,7 +67,11 @@ function Header() {
             {t('auth.signin')}
           </button>
         )}
-        {user && <button className="button signout-btn">{t('auth.signout')}</button>}
+        {user && (
+          <button className="button signout-btn" onClick={() => logout()}>
+            {t('auth.signout')}
+          </button>
+        )}
       </div>
     </header>
   );

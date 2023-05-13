@@ -12,10 +12,9 @@
     "variables": "Variables",
     "headers": "Headers"
   },
-  "buttons": {
-    "label": {
-      "copy": "Copy query (Shift + Ctrl + C)",
-      "execute": "Execute query (Ctrl + Enter)"
-    }
+  "tooltips": {
+    "copy": "Copy query (Shift + Ctrl + C)",
+    "execute": "Execute query (Ctrl + Enter)",
+    "link": "Past API link"
   }
 }

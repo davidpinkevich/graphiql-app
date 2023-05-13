@@ -12,10 +12,9 @@
     "variables": "Переменные",
     "headers": "Заголовки"
   },
-  "buttons": {
-    "label": {
-      "copy": "Скопировать запрос (Shift + Ctrl + C)",
-      "execute": "Выполнить запрос (Ctrl + Enter)"
-    }
+  "tooltips": {
+    "copy": "Скопировать запрос (Shift + Ctrl + C)",
+    "execute": "Выполнить запрос (Ctrl + Enter)",
+    "link": "Вставьте API ссылку"
   }
 }
