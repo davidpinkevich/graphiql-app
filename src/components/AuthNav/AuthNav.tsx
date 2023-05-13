@@ -20,10 +20,10 @@ function AuthNav() {
   return (
     <nav className="auth-nav">
       <ul className="auth-nav__list">
-        <li className={signInActive} onClick={() => onChangeAuth('signin')}>
+        <li className={signInActive} onClick={() => dispatch(onAuthChange('signin'))}>
           {t('auth.signin')}
         </li>
-        <li className={signUpActive} onClick={() => onChangeAuth('signup')}>
+        <li className={signUpActive} onClick={() => dispatch(onAuthChange('signup'))}>
           {t('auth.signup')}
         </li>
       </ul>

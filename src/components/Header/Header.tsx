@@ -26,7 +26,7 @@ function Header() {
   });
 
   const navigate = useNavigate();
-  
+
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (language: string) => {
