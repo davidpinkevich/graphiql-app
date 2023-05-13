@@ -1,11 +1,15 @@
 .auth {
   background: url('https://cdn.codersociety.com/uploads/graphql-reasons.png') center center/cover no-repeat;
+  min-height: calc(100vh - 60px - 65px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-grow: 1;
 
   &__container {  
-    width: 1280px;
+    max-width: 1280px;
+    height: 100%;
     margin: 0 auto;
-    margin-top: 80px;
     display: flex;
     justify-content: center;
     align-items: center;

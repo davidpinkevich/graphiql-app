@@ -70,7 +70,7 @@ const editorSlice = createSlice({
       })
       .addCase(getData.fulfilled, (state, action) => {
         state.loadingData = 'start';
-        state.response = JSON.stringify(action.payload);
+        state.response = JSON.stringify(action.payload, null, 2);
       })
       .addCase(getData.rejected, (state) => {
         state.loadingData = 'error';
