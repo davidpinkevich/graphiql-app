@@ -42,10 +42,4 @@ const logout = () => {
   signOut(auth);
 };
 
-export {
-  auth,
-  db,
-  logInWithEmailAndPassword,
-  registerWithEmailAndPassword,
-  logout,
-};
+export { auth, db, logInWithEmailAndPassword, registerWithEmailAndPassword, logout };

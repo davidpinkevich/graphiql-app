@@ -6,7 +6,7 @@ import { hiddenSidebar, activeBtn } from '../../../redux/slices/editor';
 function ButtonsOptions() {
   const { chooseBtn } = useSelector((state: TStore) => state.editor);
   const dispatch = useDispatch();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="editor__sidebar-options">
       <button
