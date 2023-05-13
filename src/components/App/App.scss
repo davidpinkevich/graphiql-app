@@ -6,3 +6,21 @@
   flex-direction: column;
   background-color: rgb(234, 223, 223);
 }
+
+html {
+  &::-webkit-scrollbar {
+    width: 24px;
+    height: 8px;
+    background-color: #143861;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #843465;
+    border-radius: 9em;
+    box-shadow: inset 1px 1px 10px #f3faf7;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #253861;
+  }
+}
