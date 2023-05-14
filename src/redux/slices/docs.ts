@@ -49,12 +49,6 @@ const slice = createSlice({
   },
 });
 
-export const {
-  setFieldName,
-  toggleOpen,
-  addToHistory,
-  removeFromHistory,
-  setBaseUrl,
-  resetDocs,
-} = slice.actions;
+export const { setFieldName, toggleOpen, addToHistory, removeFromHistory, setBaseUrl, resetDocs } =
+  slice.actions;
 export default slice.reducer;
