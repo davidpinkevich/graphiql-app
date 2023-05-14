@@ -16,9 +16,6 @@ function Header() {
   const [user, loading, error] = useAuthState(auth);
 
   const navigate = useNavigate();
-  useEffect(() => {
-    if (!user && !loading) navigate('/authorization');
-  }, [user, loading]);
 
   useEffect(() => {
     const handleScroll = () => {
