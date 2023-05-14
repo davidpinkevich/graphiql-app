@@ -27,9 +27,6 @@ const slice = createSlice({
     setFieldName(state, action: PayloadAction<string>) {
       state.currentFieldName = action.payload;
     },
-    setFieldArgs(state, action: PayloadAction<Array<IntrospectionInputValue>>) {
-      state.currentFieldArgs = action.payload;
-    },
     toggleOpen(state) {
       state.isOpen = !state.isOpen;
     },
@@ -46,8 +43,7 @@ const slice = createSlice({
     },
     resetDocs(state) {
       state.currentFieldName = 'Query';
-      state.currentFieldArgs = [];
-      state.history = ['Query'];
+      state.history = [{ name: 'Query', args: [] }];
       state.isOpen = false;
     },
   },
@@ -55,7 +51,6 @@ const slice = createSlice({
 
 export const {
   setFieldName,
-  setFieldArgs,
   toggleOpen,
   addToHistory,
   removeFromHistory,
