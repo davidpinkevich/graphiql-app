@@ -15,7 +15,6 @@ function SignUpForm() {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<ISingUpForm>({ reValidateMode: 'onSubmit' });
 
   const onSubmit: SubmitHandler<ISingUpForm> = ({ name, email, password }) => {
