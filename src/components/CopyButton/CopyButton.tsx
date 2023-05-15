@@ -28,7 +28,7 @@ function CopyButton() {
       onMouseLeave={popupTooltip}
       className="editor__copy"
     >
-      {tooltip && <div className="editor__copy-tooltip">{t('buttons.label.copy')}</div>}
+      {tooltip && <div className="editor__copy-tooltip">{t('tooltips.copy')}</div>}
       <div className="editor__copy-container">
         <img src={copy} />
       </div>

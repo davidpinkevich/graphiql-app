@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth, logout } from '../../firebase';
 import { AppDispatch } from '../../redux/store';
 import { onAuthChange } from '../../redux/slices/auth';
 
@@ -12,6 +13,9 @@ function Header() {
   const dispatch = useDispatch<AppDispatch>();
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [user, loading, error] = useAuthState(auth);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,8 +28,6 @@ function Header() {
       window.removeEventListener('scroll', handleScroll);
     };
   });
-
-  const navigate = useNavigate();
 
   const { t, i18n } = useTranslation();
 
@@ -40,25 +42,33 @@ function Header() {
         <div className="button language lang-btn" onClick={() => changeLanguage(nextLanguage)}>
           {nextLanguage.toUpperCase()}
         </div>
-        <button
-          className="button signup-btn"
-          onClick={() => {
-            dispatch(onAuthChange('signup'));
-            navigate('/authorization');
-          }}
-        >
-          {t('auth.signup')}
-        </button>
-        <button
-          className="button signin-btn"
-          onClick={() => {
-            dispatch(onAuthChange('signin'));
-            navigate('/authorization');
-          }}
-        >
-          {t('auth.signin')}
-        </button>
-        <button className="button signout-btn">{t('auth.signout')}</button>
+        {!user && (
+          <button
+            className="button signup-btn"
+            onClick={() => {
+              dispatch(onAuthChange('signup'));
+              navigate('/authorization');
+            }}
+          >
+            {t('auth.signup')}
+          </button>
+        )}
+        {!user && (
+          <button
+            className="button signin-btn"
+            onClick={() => {
+              dispatch(onAuthChange('signin'));
+              navigate('/authorization');
+            }}
+          >
+            {t('auth.signin')}
+          </button>
+        )}
+        {user && (
+          <button className="button signout-btn" onClick={() => logout()}>
+            {t('auth.signout')}
+          </button>
+        )}
       </div>
     </header>
   );

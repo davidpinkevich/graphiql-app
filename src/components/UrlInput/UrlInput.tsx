@@ -2,6 +2,7 @@ import './UrlInput.scss';
 import { setBaseUrl, resetDocs } from '../../redux/slices/docs';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ChangeEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function UrlInput() {
   const [tooltip, setTooltip] = useState<boolean>(false);
@@ -21,9 +22,11 @@ function UrlInput() {
     dispatch(resetDocs());
   };
 
+  const { t } = useTranslation();
+
   return (
     <div onMouseEnter={popupTooltip} onMouseLeave={popupTooltip} className="url-input">
-      {tooltip && <div className="editor__input-tooltip">Past API link</div>}
+      {tooltip && <div className="editor__input-tooltip">{t('tooltips.link')}</div>}
       <input type="text" value={value} onChange={onChangeClick} />
     </div>
   );

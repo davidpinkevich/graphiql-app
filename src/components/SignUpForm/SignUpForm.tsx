@@ -5,6 +5,11 @@ import Button from '@mui/material/Button';
 
 import { ISingUpForm } from '../../types';
 
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import { auth, registerWithEmailAndPassword } from '../../firebase';
+import { useEffect } from 'react';
+
 function SignUpForm() {
   const {
     register,
@@ -14,8 +19,21 @@ function SignUpForm() {
   } = useForm<ISingUpForm>({ reValidateMode: 'onSubmit' });
 
   const onSubmit: SubmitHandler<ISingUpForm> = ({ name, email, password }) => {
-    console.log(name, email, password);
+    registerUser(name, email, password);
   };
+
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  const registerUser = (name: string, email: string, password: string) => {
+    if (!name) alert('Please enter name');
+    registerWithEmailAndPassword(name, email, password);
+  };
+
+  useEffect(() => {
+    if (loading) return;
+    if (user) navigate('/main');
+  }, [user, loading]);
 
   const { t } = useTranslation();
 

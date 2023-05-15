@@ -63,7 +63,7 @@ function ResponseButton() {
       onMouseEnter={popupTooltip}
       onMouseLeave={popupTooltip}
     >
-      {tooltip && <div className="editor__btn-tooltip">{t('buttons.label.execute')}</div>}
+      {tooltip && <div className="editor__btn-tooltip">{t('tooltips.execute')}</div>}
       <div className="editor__btn-container">
         <img src={loadingData === 'start' || loadingData === 'error' ? play : pause} />
       </div>
