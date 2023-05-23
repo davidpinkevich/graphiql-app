@@ -4,7 +4,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 180px;
+  text-align: center;
+  font-size: 120px;
+  padding: 15px;
+  @media (max-width: 1150px) {
+    font-size: 80px;
+  }
+  @media (max-width: 600px) {
+    font-size: 40px;
+  }
 
   .button {
     height: 72px;
@@ -12,6 +20,10 @@
     color: #000;
     border: 2px solid #000;
     font-size: 20px;
+    margin-top: 40px;
+    @media (max-width: 1150px) {
+      height: 50px;
+    }
 
     &:hover {
       background-color: #000;

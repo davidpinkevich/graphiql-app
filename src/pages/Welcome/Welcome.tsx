@@ -16,7 +16,7 @@ function Welcome() {
 
   return (
     <div className="welcome-page">
-      Welcome
+      Welcome to GraphQL
       <div className="header__actions">
         {!user && (
           <button
