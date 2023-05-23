@@ -1,7 +1,7 @@
 .editor__copy {
   position: absolute;
   z-index: 12;
-  top: 14%;
+  top: 12%;
   right: 2%;
   width: 60px;
   height: 60px;
@@ -14,7 +14,7 @@
   @media (max-width: 600px) {
     width: 40px;
     height: 40px;
-    top: 11%;
+    top: 9%;
   }
   &:hover {
     transform: scale(1.05);

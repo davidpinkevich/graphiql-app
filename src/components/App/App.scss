@@ -9,18 +9,18 @@
 
 html {
   &::-webkit-scrollbar {
-    width: 24px;
+    width: 16px;
     height: 8px;
-    background-color: #143861;
+    background-color: rgb(32, 30, 30);
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #843465;
+    background-color: rgb(163, 146, 146);
     border-radius: 9em;
-    box-shadow: inset 1px 1px 10px #f3faf7;
+    box-shadow: inset 0px 0px 2px 2px black;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background-color: #253861;
+    background-color: rgb(174, 161, 161);
   }
 }
