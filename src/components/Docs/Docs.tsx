@@ -111,7 +111,7 @@ function Docs() {
   };
 
   let currentFieldArgs: Array<IntrospectionInputValue> = [];
-  if (history && history[history.length - 1] && history[history.length - 1].args) {
+  if (history[history.length - 1] && history[history.length - 1].args) {
     currentFieldArgs = history[history.length - 1].args;
   }
 
@@ -137,7 +137,11 @@ function Docs() {
               style={{ transform: 'rotate(90deg)' }}
               alt="left arrow"
             />
-            <p>{history[history.length - 2].name}</p>
+            <p>
+              {history[history.length - 2].name.length > 15
+                ? `${history[history.length - 2].name.substring(0, 15)}..`
+                : history[history.length - 2].name}
+            </p>
           </div>
         )}
       </div>
