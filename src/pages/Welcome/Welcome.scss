@@ -31,3 +31,15 @@
     }
   }
 }
+
+.welcome-page .header__actions {
+  display: flex;
+  @media (max-width: 455px) {
+    flex-direction: column;
+    margin-top: 25px;
+    gap: 10px;
+    & .button {
+      margin-top: 0;
+    }
+  }
+}

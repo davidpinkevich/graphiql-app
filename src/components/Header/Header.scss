@@ -18,6 +18,9 @@
   top: 0;
   color: white;
   transition: 0.2s;
+  @media (max-width: 400px) {
+    justify-content: center;
+  }
 
   &.scrolled {
     background-color: rgb(32, 30, 30);
@@ -50,5 +53,11 @@
     background-color: #fff;
     color: #000;
     text-shadow: none;
+  }
+}
+
+.header .header__actions {
+  @media (max-width: 400px) {
+    gap: 10px;
   }
 }
