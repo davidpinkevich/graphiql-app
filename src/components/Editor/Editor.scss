@@ -8,6 +8,7 @@
   overflow: hidden;
   position: relative;
   min-width: 400px;
+  max-width: 600px;
   flex: 1 1 auto;
   height: 800px;
   flex-direction: column;
@@ -17,6 +18,9 @@
   }
   @media (max-width: 500px) {
     min-width: 290px;
+  }
+  @media (max-width: 1346px) {
+    max-width: none;
   }
 
   &__main-wrapper {
