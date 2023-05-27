@@ -5,6 +5,7 @@
   box-shadow: 0px 0px 2px 2px black;
   font-size: 18px;
   margin-left: 2px;
+  position: relative;
 
   &__json {
     height: 100%;
@@ -22,5 +23,13 @@
       border-radius: 8px;
       box-shadow: inset 0px 0px 3px 3px black;
     }
+  }
+
+  &__alert {
+    position: absolute;
+    z-index: 2;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
