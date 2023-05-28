@@ -13,7 +13,7 @@
 }
 
 .field-name_red {
-  color: #f25c54;
+  color: #a73933;
 }
 
 .type-name {
@@ -61,7 +61,7 @@
   &__back {
     cursor: pointer;
 
-    transition: .4s;
+    transition: 0.4s;
     margin: 3px;
     padding: 5px;
     border-radius: 5px;
@@ -90,6 +90,7 @@
   &__type {
     margin-top: 30px;
     padding: 0.5rem;
+    text-shadow: 0px 1px 1px black;
   }
 
   &__field {
@@ -97,6 +98,7 @@
     padding: 0.5rem 2rem 0.5rem 0.5rem;
     cursor: pointer;
     transition: 0.1s;
+    text-shadow: 0px 1px 1px black;
 
     &:hover {
       background-color: #8d7c7c;
@@ -119,6 +121,7 @@
     transition: 0.1s;
     cursor: pointer;
     position: relative;
+    text-shadow: 0px 1px 1px black;
 
     &:hover {
       background-color: #8d7c7c;

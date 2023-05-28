@@ -4,6 +4,7 @@ import Welcome from '../../pages/Welcome/Welcome';
 import Authorization from '../../pages/Authorization/Authorization';
 import Main from '../../pages/Main/Main';
 import NotFound from '../../pages/NotFound/NotFound';
+import './global.css';
 import './App.scss';
 
 function App() {

@@ -18,7 +18,9 @@ function Editor() {
         <ResponseButton />
         <CopyButton />
         <div className="editor__main-container">
-          <TextArea className="editor__area" mirror="main" headers={false} />
+          <div className="editor__main-wrapper">
+            <TextArea className="editor__area" mirror="main" headers={false} />
+          </div>
         </div>
         <div className={hiddenSide ? 'editor__sidebar sidebar__view' : 'editor__sidebar'}>
           <div className="editor__sidebar-buttons">
@@ -33,7 +35,9 @@ function Editor() {
                 : 'editor__variables-container variables__hidden'
             }
           >
-            <TextArea className="editor__variables" mirror="variables" headers={false} />
+            <div className="editor__variables-wrapper">
+              <TextArea className="editor__variables" mirror="variables" headers={false} />
+            </div>
           </div>
           <div
             className={

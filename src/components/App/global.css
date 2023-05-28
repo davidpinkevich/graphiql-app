@@ -1,0 +1,15 @@
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.css-i2mvsy-MuiButtonBase-root-MuiButton-root {
+  background-color: black !important;
+  border: 2px solid #fff !important;
+  border-radius: 4px !important;
+  font-size: 16px !important;
+}
+
+.css-i2mvsy-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: #fff !important;
+  color: #000 !important;
+}
