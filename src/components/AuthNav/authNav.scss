@@ -1,5 +1,15 @@
 .auth {
   position: relative;
+  font-family: 'Yanone Kaffeesatz';
+  & input {
+    &:focus {
+      & label {
+        font-weight: 700;
+        color: red;
+      }
+    }
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -19,14 +29,17 @@
   }
 
   &__item {
-    font-size: 18px;
+    text-shadow: none;
+    font-size: 26px;
     padding-bottom: 10px;
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.3);
+    color: rgb(255, 255, 255, 0.3);
+    transition: all 0.1s;
 
     &_active {
-      color: rgba(0, 0, 0);
-      border-bottom: 2px solid #ef4374;
+      color: rgb(255, 255, 255);
+      text-shadow: 1px 1px 1px black;
+      border-bottom: 2px solid black;
     }
 
     &:last-child {
