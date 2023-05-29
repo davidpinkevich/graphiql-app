@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau:wght@300;400;500;600;700&display=swap');
+
+.docs-code {
+  font-family: 'Source Code Pro', monospace;
+  border-radius: 2px;
+  padding: 1px 2px;
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 14px;
+}
+
+.field-name {
+  color: #1f61a0;
+}
+
+.field-name_red {
+  color: #a73933;
+}
+
+.type-name {
+  color: rgb(245, 160, 0);
+  margin-left: 5px;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 10px;
+}
+
+.graphql-docs {
+  background-color: rgb(176, 156, 156);
+  display: flex;
+  flex-direction: column;
+  font-size: 22px;
+  gap: 1rem;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0px 0px 2px 2px black;
+  font-family: 'Yanone Kaffeesatz';
+  position: relative;
+  width: 300px;
+
+  &.closed {
+    display: none;
+  }
+
+  @media screen and (max-width: 834px) {
+    width: 100%;
+  }
+}
+
+.docs-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  &__title {
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  &__back {
+    cursor: pointer;
+
+    transition: 0.4s;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      transform: scale(1.1);
+      background-color: rgba(204, 190, 190, 0.7);
+    }
+  }
+}
+
+.docs-content {
+  &__title {
+    margin-bottom: 10px;
+    padding-left: 0.5rem;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  &__description {
+    padding: 0.5rem;
+  }
+
+  &__type {
+    margin-top: 30px;
+    padding: 0.5rem;
+    text-shadow: 0px 1px 1px black;
+  }
+
+  &__field {
+    position: relative;
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    cursor: pointer;
+    transition: 0.1s;
+    text-shadow: 0px 1px 1px black;
+
+    &:hover {
+      background-color: #8d7c7c;
+      transform: scale(1.03);
+    }
+
+    &:hover .field-name,
+    &:hover .type-name {
+      color: white;
+    }
+  }
+
+  &__subtitle {
+    margin: 25px 0 10px;
+    padding-left: 0.5rem;
+  }
+
+  &__arg {
+    padding: 0.5rem;
+    transition: 0.1s;
+    cursor: pointer;
+    position: relative;
+    text-shadow: 0px 1px 1px black;
+
+    &:hover {
+      background-color: #8d7c7c;
+      transform: scale(1.03);
+    }
+
+    &:hover .field-name,
+    &:hover .type-name {
+      color: white;
+    }
+  }
+}
