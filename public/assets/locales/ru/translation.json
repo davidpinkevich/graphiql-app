@@ -1,0 +1,20 @@
+{
+  "docs": "Документация",
+  "auth": {
+    "signup": "Зарегистрироваться",
+    "signin": "Войти",
+    "signout": "Выйти",
+    "name": "Имя",
+    "email": "Email",
+    "password": "Пароль"
+  },
+  "options": {
+    "variables": "Переменные",
+    "headers": "Заголовки"
+  },
+  "tooltips": {
+    "copy": "Скопировать запрос (Shift + Ctrl + C)",
+    "execute": "Выполнить запрос (Ctrl + Enter)",
+    "link": "Вставьте API ссылку"
+  }
+}

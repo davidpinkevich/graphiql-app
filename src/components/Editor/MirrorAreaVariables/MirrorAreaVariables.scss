@@ -1,0 +1,37 @@
+.editor__mirror-variables {
+  padding: 80px 20px 55px 55px;
+  position: relative;
+  letter-spacing: 1px;
+  background-color: rgb(91, 78, 78);
+  text-shadow: 0px 1px 1px black;
+  width: 100%;
+  // height: 1200px;
+  min-height: 250px;
+  white-space: pre;
+
+  &-item {
+    position: relative;
+    height: 18px;
+  }
+  &-item-index {
+    position: absolute;
+    left: -10px;
+    top: 0;
+  }
+}
+
+.editor__mirror-string {
+  color: rgb(205, 201, 166);
+}
+
+.editor__mirror-number {
+  color: chocolate;
+}
+
+.editor__mirror-undefined {
+  color: rgb(221, 40, 40);
+}
+
+.editor__mirror-text {
+  color: rgb(74, 168, 74);
+}

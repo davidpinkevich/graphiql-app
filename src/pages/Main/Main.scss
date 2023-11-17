@@ -1,0 +1,12 @@
+.graphql-container {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  flex-grow: 1;
+
+  @media screen and (max-width: 520px) {
+    flex-direction: column;
+  }
+}
